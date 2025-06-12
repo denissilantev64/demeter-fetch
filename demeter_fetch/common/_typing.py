@@ -122,6 +122,7 @@ class RpcConfig:
     force_no_proxy: bool = False  # if set to true, will ignore proxy setting
     height_cache_path: str = None
     thread: int = 10
+    delay: float = 0  # seconds to wait between rpc requests
 
 
 @dataclass

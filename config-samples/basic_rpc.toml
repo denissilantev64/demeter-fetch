@@ -16,6 +16,8 @@ is_token0_base = false
 [from.rpc] # If you want to download from rpc interface, use this section
 end_point = "https://192.168.0.100:8545"
 etherscan_api_key = "some_api_key" # Api key of etherscan
+# wait this many seconds between rpc requests
+delay = 0
 
 [to]
 type = "tick" # minute or tick or raw

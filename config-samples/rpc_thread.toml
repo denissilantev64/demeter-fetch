@@ -14,6 +14,7 @@ etherscan_api_key = "Your key at XXXScan"
 # If you use public node service like alchemy or infura, be sure set thread lower,
 # Too frequency requests will get you banned by those service.
 thread = 2
+#delay = 0
 
 
 [to]
