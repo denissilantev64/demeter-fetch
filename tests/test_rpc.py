@@ -38,7 +38,7 @@ class UniLpDataTest(unittest.TestCase):
                 )
             ]
         )
-        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890")
+        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890", delay=0)
         height_cache = rpc.HeightCacheManager(typing.ChainType.polygon, self.config["to_path"])
         files = rpc.query_event_by_height_concurrent(
             chain=typing.ChainType.polygon,
@@ -70,7 +70,7 @@ class UniLpDataTest(unittest.TestCase):
                 )
             ]
         )
-        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890")
+        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890", delay=0)
         height_cache = rpc.HeightCacheManager(typing.ChainType.polygon, self.config["to_path"])
         files = rpc.query_event_by_height(
             chain=typing.ChainType.polygon,
@@ -103,7 +103,7 @@ class UniLpDataTest(unittest.TestCase):
             ]
         )
 
-        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890")
+        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890", delay=0)
         files = self.query_3_save_2(client)
         print(files)
         self.assertTrue(len(files) == 2)
@@ -116,7 +116,7 @@ class UniLpDataTest(unittest.TestCase):
             ]
         )
 
-        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890")
+        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890", delay=0)
         files = self.query_3_save_2(client)
         print(files)
         self.assertTrue(len(files) == 2)
@@ -147,7 +147,7 @@ class UniLpDataTest(unittest.TestCase):
         )
 
     def test_query_event_by_height_save_rest_remove_last(self):
-        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890")
+        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890", delay=0)
         files = self.query_3_save_2(client)
         # just remove the last file.
         self.remove_tmp_file(["polygon-0x45dda9cb7c25131df268515131f647d726f50608-42448301-42448799.tmp.pkl"])
@@ -156,7 +156,7 @@ class UniLpDataTest(unittest.TestCase):
         self.assertTrue(len(files) == 2)
 
     def test_query_event_by_height_save_rest_remove_first(self):
-        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890")
+        client = rpc.EthRpcClient(self.config["end_point"], "127.0.0.1:7890", delay=0)
         files = self.query_3_save_2(client)
         # just remove the first file.
         self.remove_tmp_file(["polygon-0x45dda9cb7c25131df268515131f647d726f50608-42447301-42448300.tmp.pkl"])
@@ -166,7 +166,7 @@ class UniLpDataTest(unittest.TestCase):
 
     def test_query_tx_receipt(self):
         df = rpc.query_event_by_tx(
-            rpc.EthRpcClient(self.config["end_point"]),
+            rpc.EthRpcClient(self.config["end_point"], delay=0),
             pd.Series(
                 [
                     "0xb4caa7d62ece248f8261d5e63ee76e69ed9fef0c9c72ea6cd33eae0ef9726512",
@@ -196,7 +196,7 @@ class UniLpDataTest(unittest.TestCase):
 
     def test_query_tx(self):
         df = rpc.query_tx(
-            rpc.EthRpcClient(self.config["end_point"]),
+            rpc.EthRpcClient(self.config["end_point"], delay=0),
             pd.Series(
                 [
                     "0xb4caa7d62ece248f8261d5e63ee76e69ed9fef0c9c72ea6cd33eae0ef9726512",

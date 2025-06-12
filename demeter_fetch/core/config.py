@@ -124,6 +124,7 @@ def convert_to_config(conf_file: dict) -> Config:
             force_no_proxy = get_item_with_default_3(conf_file, "from", "rpc", "force_no_proxy", False)
             height_cache_path = get_item_with_default_3(conf_file, "from", "rpc", "height_cache_path", None)
             thread = get_item_with_default_3(conf_file, "from", "rpc", "thread", None)
+            delay = get_item_with_default_3(conf_file, "from", "rpc", "delay", 0)
 
             from_config.rpc = RpcConfig(
                 end_point=end_point,
@@ -134,6 +135,7 @@ def convert_to_config(conf_file: dict) -> Config:
                 force_no_proxy=force_no_proxy,
                 height_cache_path=height_cache_path,
                 thread=thread,
+                delay=delay,
             )
         case DataSource.big_query:
             if "big_query" not in conf_file["from"]:

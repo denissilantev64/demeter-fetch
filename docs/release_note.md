@@ -1,3 +1,7 @@
+# v1.3.5
+
+* add `delay` option in rpc config to control time between requests
+
 # v1.3.4
 
 * [Breaking change] Rename realizedNetYield in GMX V2 minute file to realizedProfit

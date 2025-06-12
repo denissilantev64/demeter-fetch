@@ -21,6 +21,7 @@ batch_size = 2000
 etherscan_api_key = "Your key at XXXScan"
 # More thread if your node is fast enough
 thread = 10
+#delay = 0
 
 
 [to]

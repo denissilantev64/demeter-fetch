@@ -1,6 +1,7 @@
 import os.path
 import warnings
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 
 import numpy as np
 import pandas as pd
@@ -28,7 +29,7 @@ class GetLogsParam:
 
 
 class EthRpcClient:
-    def __init__(self, endpoint: str, proxy="", auth=""):
+    def __init__(self, endpoint: str, proxy="", auth="", delay: float = 0):
         self.session = requests.Session()
         adapter = requests.adapters.HTTPAdapter(pool_connections=5, pool_maxsize=20)
         self.session.mount("https://", adapter)
@@ -45,6 +46,7 @@ class EthRpcClient:
             if proxy
             else {}
         )
+        self.delay = delay
 
     def __del__(self):
         self.session.close()
@@ -66,7 +68,12 @@ class EthRpcClient:
         return content["result"]
 
     def do_post(self, param):
-        return self.session.post(self.endpoint, json=param, proxies=self.proxies, headers=self.headers)
+        response = self.session.post(
+            self.endpoint, json=param, proxies=self.proxies, headers=self.headers
+        )
+        if self.delay > 0:
+            time.sleep(self.delay)
+        return response
 
     def get_block(self, height):
         return self.send("eth_getBlockByNumber", [hex(height), False])
